@@ -1,0 +1,198 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+    position: relative;
+
+    -webkit-user-select: none;
+    /* ngăn chọn text Safari/Chrome */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    touch-action: none;
+}
+
+.header {
+    height: 50px;
+    background-color: #252728;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body {
+    flex: 1;
+    min-height: 0;
+    background: linear-gradient(270deg,
+            #7D0000 0%,
+            #5E001C 35%,
+            #0E0067 65%,
+            #000074 100%);
+    display: grid;
+    grid-template-columns: 1.2fr 4fr 1.2fr 3fr 1.2fr 4fr 1.2fr;
+    grid-template-rows: 1fr 8fr 1fr;
+    grid-template-areas:
+        " teamA athleteA athleteA . athleteB athleteB teamB"
+        " sideA pointA pointA middleT pointB pointB sideB"
+        "gamJeomA . wonA middleB wonB . gamJeomB"
+}
+
+.athlete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.athlete.blue {
+    grid-area: athleteA;
+}
+
+.athlete.red {
+    grid-area: athleteB;
+}
+
+.team.blue {
+    grid-area: teamA;
+}
+
+.team.red {
+    grid-area: teamB;
+}
+
+.side.blue {
+    grid-area: sideA;
+}
+
+.side.red {
+    grid-area: sideB;
+}
+
+.point {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 500px;
+    overflow: hidden;
+    clip-path: inset(0);
+}
+
+.point.blue {
+    grid-area: pointA;
+    background: linear-gradient(180deg,
+            #00009E 0%,
+            #0001BE 100%);
+}
+
+.point.red {
+    grid-area: pointB;
+    background: linear-gradient(180deg,
+            #A30000 0%,
+            #C90000 100%);
+}
+
+.middle {
+    background-color: #252728;
+}
+
+.middle.top {
+    grid-area: middleT;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.middle>.label-number>span {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.middle>.label-number.round>:last-child {
+    font-size: 50px;
+}
+
+.middle.bottom {
+    grid-area: middleB;
+}
+
+.label-number {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.label-number>span {
+    text-align: center;
+}
+
+.stopwatch {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    height: 40%;
+    min-width: 150px;
+    min-height: 150px;
+    /* font-siz: 120px; */
+}
+
+.stopwatch>* {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.stopwatch>:first-child {
+    border-width: 10px;
+}
+
+.stopwatch>.stop {
+    font-weight: 900;
+    background-color: rgb(255, 255, 255);
+    color: red;
+}
+
+.gamjeom.blue {
+    grid-area: gamJeomA;
+}
+
+.gamjeom.red {
+    grid-area: gamJeomB;
+}
+
+.won.blue {
+    grid-area: wonA;
+}
+
+.won.red {
+    grid-area: wonB;
+}
+
+.score.label-number {
+    align-self: center;
+    height: 80%;
+}
+
+.label-number.score>:first-child {
+    font-weight: bold;
+}
+
+.label-number.score>:last-child {
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.label-number.won>* {
+    color: chartreuse;
+}

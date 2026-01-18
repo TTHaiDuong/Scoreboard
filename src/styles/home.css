@@ -1,0 +1,72 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.tab-bar {
+    height: 50px;
+    background-color: #383838;
+    display: flex;
+    padding: 1px;
+    gap: 1px;
+}
+
+.tab-button {
+    max-width: 150px;
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.tab-button[data-color=false]:hover {
+    background-color: red;
+}
+
+.tab-button-text {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    color: white
+}
+
+.tab-page {
+    flex: 1;
+    background-color: #1E1E1E;
+}
+
+.court-page {
+    display: flex;
+    justify-content: center;
+}
+
+.court-list {
+    flex: 1;
+    max-width: 800px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #252728;
+    display: flex;
+    flex-direction: column;
+}
+
+.court-list>.card:nth-child(n+2):nth-child(odd) {
+    background-color: #565b5d;
+}
+
+.court-list>.header {
+    background-color: rgb(0, 0, 0);
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 3fr 2fr;
+    place-items: center;
+    width: 100%;
+    height: 50px;
+}

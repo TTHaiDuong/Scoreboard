@@ -1,0 +1,250 @@
+.border-gradient {
+    position: relative;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 3px;
+}
+
+.fullscreen-req {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    background-color: black;
+
+}
+
+#main-container {
+    width: 100vw;
+    height: 100vh;
+    user-select: none;
+    overflow: hidden;
+}
+
+.detail-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(20, 20, 20);
+}
+
+.detail-result>div {
+    width: 100%;
+    height: calc(100% / 3);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.h-point {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 8vw;
+    aspect-ratio: 2 / 1;
+}
+
+.v-point {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 6vw;
+    aspect-ratio: 1 / 2;
+}
+
+.v-point>.two-ends {
+    height: 20%;
+}
+
+.v-point>.middle {
+    height: 25%;
+}
+
+.total-point {
+    color: white;
+    border-radius: 0.5rem;
+    width: 8%;
+    height: 70%;
+}
+
+.match-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 20%;
+    height: 80%;
+}
+
+.match-info>div {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: white;
+}
+
+.match-info>.title {
+    height: 100%;
+}
+
+.team-name {
+    border-radius: 0.5rem;
+    width: 20%;
+    height: 80%;
+    font-weight: bold;
+}
+
+.round {
+    height: 25%;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.rounds-result {
+    display: flex;
+    flex-direction: column;
+    width: 16%;
+    height: 80%;
+}
+
+.each-round-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+}
+
+.two-ends-each-round {
+    background-color: rgb(47, 79, 79);
+}
+
+.each-round {
+    width: 30%;
+    height: 90%;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+.business-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    width: 100vw;
+    height: 100vh;
+}
+
+.business-container>.tracking {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 25%;
+    height: 30%;
+}
+
+.tracking>.title {
+    color: white;
+    background-color: #f59e0b;
+    border-radius: 0.5rem;
+    width: 100%;
+    height: 20%;
+}
+
+.match-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(20, 20, 20);
+}
+
+.match-result>.head {
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.match-result>.head>.title {
+    height: 60%;
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.match-result>.head>.subtitle {
+    color: white;
+    height: 25%;
+}
+
+.match-result>.content {
+    width: 70%;
+    height: 50%;
+}
+
+.match-result>.content>div {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2%;
+}
+
+.match-result>.content>div>.winner {
+    width: 65%;
+    height: 80%;
+    background-color: rgb(196, 196, 0);
+    border-radius: 0.5rem;
+    color: #fff;
+}
+
+.match-result>.content>div>.blue {
+    width: 15%;
+    height: 80%;
+    border-radius: 0.5rem;
+    color: #fff;
+}
+
+.match-result>.content>div>.red {
+    width: 15%;
+    height: 80%;
+    border-radius: 0.5rem;
+    color: #fff;
+}
+
+.match-result>.content>div>.flag {
+    height: 80%;
+    border-radius: 0.5rem;
+}
+
+.match-result>.content>div>.athlete {
+    flex: 1;
+    height: 80%;
+    border-radius: 0.5rem;
+    color: #fff;
+}

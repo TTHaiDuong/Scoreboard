@@ -1,0 +1,94 @@
+.operator {
+    container-type: inline-size;
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    position: relative;
+}
+
+/* .overlay {
+    position: absolute;
+    width: 60rem;
+    height: 30rem;
+    background-color: aquamarine;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */
+
+.layout {
+    display: grid;
+    width: 100%;
+    height: 100%;
+}
+
+.layout {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2fr 2fr 2fr 7fr;
+    grid-template-areas:
+        "header header"
+        "info info"
+        "score score"
+        "control control"
+        "pointA pointB";
+    padding-bottom: 30px;
+}
+
+/* @container (max-width: 30rem) {
+    .layout {
+        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-rows: 1fr 1fr 3fr;
+        grid-template-areas:
+            "header header header"
+            "pointA infor pointB"
+            "pointA score pointB";
+    }
+}
+
+@container (min-width: 30rem) and (min-height: 30rem) {
+    .layout {
+        grid-template-columns: 1fr 2fr 1fr 2fr 1fr;
+        grid-template-rows: 1fr 1fr 2fr 2fr 1fr;
+        grid-template-areas:
+            "header header header header header"
+            "teamA athleteA . athleteB teamB"
+            "sideA pointA middle pointB sideB"
+            "controlA controlA middle controlB controlB"
+            "footer footer footer footer footer";
+    }
+} */
+
+.control>span {
+    font-size: 14px;
+}
+
+.header {
+    grid-area: header;
+    background-color: aquamarine;
+    width: 100%;
+    height: 100%;
+}
+
+.point-editor-container {
+    flex: 1;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.point-editor-container.blue {
+    grid-area: pointA;
+}
+
+.point-editor-container.red {
+    grid-area: pointB;
+}
+
+.external-point-editor {
+    width: clamp(30px, 80%, 200px);
+    height: clamp(30px, 40px, 50px);
+}

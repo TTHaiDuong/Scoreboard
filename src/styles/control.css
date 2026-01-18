@@ -1,0 +1,445 @@
+.main-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.bg {
+    flex: 1
+}
+
+.bg.blue {
+    background-color: #013a6d;
+}
+
+.bg.red {
+    background-color: #75171e;
+}
+
+/* Div nổi ở giữa, điểm, nút điều khiển,... */
+.main-container>.float {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1.5fr 5fr 3fr 5fr 1.5fr;
+    grid-template-rows: 1fr 2fr 5fr 5fr 1fr;
+    grid-template-areas:
+        " header   header   header    header   header "
+        " teamA   athleteA     .     athleteB  teamB  "
+        " sideA    pointA  stopwatch  pointB   sideB  "
+        "controlA controlA stopwatch controlB controlB"
+        " footer   footer   footer    footer   footer ";
+}
+
+/* Dải trên cùng */
+/* 
+Thứ tự giảm ưu tiên hiển thị thông tin khi thu nhỏ chiều ngang:
+    1. Hạng cân
+    2. Loại trận (chung kết, bán kết) -> F, SF, QF,...
+    3. Giới tính -> M, F
+    4. Trình độ (senior, junior, cadet)
+
+    Qualification Senior - Final Male - 58KG
+    Senior - Final Male - 58KG
+    Final Male - 58KG
+    F-M-58KG
+
+    Lứa tuổi 1 - Chung kết - Nam - +68KG
+    Chung kết - Nam - +68KG
+    CK - Nam - +68KG
+ */
+.header {
+    grid-area: header;
+    background-color: black;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.header>.title {
+    color: white;
+    font-weight: bold;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Dải dưới cùng */
+.footer {
+    grid-area: footer;
+    background-color: black;
+    display: grid;
+    grid-template-columns: 1.5fr 5fr 3fr 5fr 1.5fr;
+    align-items: center;
+    justify-items: center;
+    overflow: hidden;
+}
+
+.play-pause {
+    width: 80%;
+    height: 70%;
+    cursor: pointer;
+    background-color: #aaaaaa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.play-pause>svg {
+    height: 70%;
+}
+
+.play-pause path {
+    fill: white;
+}
+
+/* Cờ và tên đơn vị */
+/* 
+Cho phép có hoặc không một trong hai cờ và tên đơn vị (flex)
+Máy tính:
+    - Toàn màn hình: đầy đủ
+    - Độ rộng dưới 1/2 màn hình, độ dài hơn 1/2: ẩn toàn bộ
+ */
+.team {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.team.blue {
+    grid-area: teamA;
+}
+
+.team.red {
+    grid-area: teamB;
+}
+
+.team>.name {
+    flex: 2;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.flag {
+    width: fit-content;
+    object-fit: contain;
+}
+
+.team>.flag {
+    flex: 3;
+    overflow: hidden;
+}
+
+/* Tên vận động viên */
+.athlete {
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.athlete.blue {
+    grid-area: athleteA;
+}
+
+.athlete.red {
+    grid-area: athleteB;
+}
+
+/* Div bên cạnh điểm */
+/* [Next] Chuẩn hoá lại các icon có turning */
+.side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8%;
+}
+
+.side.blue {
+    grid-area: sideA;
+    align-items: end;
+}
+
+.side.red {
+    grid-area: sideB;
+    align-items: start;
+}
+
+.side table {
+    width: 60%;
+    aspect-ratio: 1 / 1.5;
+    background-color: white;
+}
+
+.side thead th {
+    background-color: #aaaaaa;
+    color: black;
+}
+
+.side tbody th {
+    background-color: lightgray;
+    color: black;
+}
+
+.side td {
+    color: black;
+    text-align: center;
+}
+
+/* Điểm số và Gam-jeom */
+.point {
+    position: relative;
+    overflow: hidden;
+}
+
+.point.blue {
+    grid-area: pointA;
+    background-color: #09498E;
+}
+
+.point.red {
+    grid-area: pointB;
+    background-color: #971826;
+}
+
+.point>div:first-child {
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.gamjeom {
+    position: absolute;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    bottom: 0;
+}
+
+.blue .gamjeom {
+    right: 5%;
+}
+
+.red .gamjeom {
+    left: 5%;
+}
+
+.gamjeom>* {
+    font-weight: bold;
+}
+
+.gamjeom>div:first-child {
+    flex: 2;
+    overflow: hidden;
+}
+
+.gamjeom>div:not(:first-child) {
+    flex: 3;
+    overflow: hidden;
+}
+
+.point .total {
+    position: absolute;
+    top: 5%;
+}
+
+.point .total {
+    width: 20%;
+}
+
+.point.blue .total {
+    left: 2%;
+}
+
+.point.red .total {
+    right: 2%;
+}
+
+/* Các điều khiển điểm */
+.control {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+}
+
+.control.blue {
+    grid-area: controlA;
+}
+
+.control.red {
+    grid-area: controlB;
+}
+
+.control>* {
+    width: 95%;
+    height: 48%;
+}
+
+/* Các nút điều khiển */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+}
+
+.buttons>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    text-align: center;
+    gap: 2px;
+}
+
+.buttons>div>div:first-child {
+    height: fit-content;
+}
+
+.buttons>div>div:first-child {
+    font-weight: bold;
+    color: black;
+    background-color: #aaaaaa;
+}
+
+/* Chi tiết ghi nhận điểm trận đấu */
+.match-detail {
+    overflow-x: auto;
+    overflow-y: scroll;
+    user-select: none;
+    background-color: aliceblue;
+}
+
+.match-detail table {
+    width: 100%;
+}
+
+.match-detail thead {
+    position: sticky;
+    top: 0;
+    background-color: #aaaaaa;
+}
+
+.match-detail th {
+    color: black;
+    text-wrap: nowrap;
+}
+
+.match-detail th:hover {
+    color: white;
+    background-color: gray;
+}
+
+.match-detail th:active {
+    background-color: rgb(53, 53, 53);
+}
+
+.match-detail tr {
+    display: grid;
+    grid-template-columns: 0.6fr 1fr 1fr 1fr 1fr;
+}
+
+.match-detail td {
+    text-align: center;
+    color: black;
+}
+
+/* Dải đen giữa */
+.middle {
+    background-color: black;
+    grid-area: stopwatch;
+    display: grid;
+    grid-template-rows: 1fr 1.2fr 0.8fr 1fr 1fr;
+}
+
+.middle>.match {
+    height: 100%;
+    text-align: center;
+}
+
+.middle>.stopwatch {
+    border: 0.4rem solid gold;
+    overflow: hidden;
+    text-align: center;
+}
+
+.middle>.timeout {
+    background-color: gold;
+    overflow: hidden;
+    color: darkred;
+    font-weight: bold;
+    visibility: hidden;
+}
+
+.middle>.round {
+    height: 100%;
+    text-align: center;
+}
+
+/* Hai nút có hình bị cắt ở giữa */
+.split-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 5vw;
+    aspect-ratio: 1 / 1;
+    user-select: none;
+}
+
+.split-btn div {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.split-btn>div {
+    position: relative;
+    height: 49%;
+    background-color: white;
+    border-radius: 0.3rem;
+    overflow: hidden;
+}
+
+.split-btn>div:hover {
+    background-color: #aaaaaa;
+}
+
+.split-btn>div:active {
+    transform: scale(0.9);
+}
+
+.split-btn>div>.icon {
+    position: absolute;
+    height: 100%;
+    left: 50%;
+    -webkit-user-drag: none;
+}
+
+.split-btn>div:first-child>.icon {
+    transform: translate(-50%, -50%);
+}
+
+.split-btn>div:last-child>.icon {
+    transform: translate(-50%, 50%);
+}
+
+.split-btn>div>.icon>* {
+    height: 100%;
+    object-fit: contain;
+}
+
+.split-btn>div>div:not(.icon) {
+    height: 50%;
+}
+
+.split-btn>div>div:not(.icon):last-child {
+    position: absolute;
+    bottom: 0;
+}

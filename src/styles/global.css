@@ -1,0 +1,100 @@
+:root {
+    /* =========================
+     BACKGROUND (nền tổng thể)
+     ========================= */
+
+    --color-bg-main: 248 250 252;
+    /* Nền chính của app (trang, layout lớn) */
+
+    --color-bg-subtle: 241 245 249;
+    /* Nền phụ: section, sidebar, panel */
+
+    /* =========================
+     SURFACE (bề mặt nổi)
+     ========================= */
+
+    --color-surface-base: 255 255 255;
+    /* Card, modal, dropdown – bề mặt nổi cao nhất */
+
+    --color-surface-soft: 248 250 252;
+    /* Card phụ, list item, input background */
+
+    /* =========================
+     TEXT (chữ)
+     ========================= */
+
+    --color-text-primary: 15 23 42;
+    /* Text chính: nội dung, heading */
+
+    --color-text-secondary: 100 116 139;
+    /* Text phụ: mô tả, label */
+
+    --color-text-muted: 148 163 184;
+    /* Text mờ: placeholder, disabled */
+
+    /* =========================
+     BORDER & DIVIDER
+     ========================= */
+
+    --color-border-subtle: 229 231 235;
+    /* Border nhẹ: input, card */
+
+    --color-border-strong: 203 213 225;
+    /* Border rõ: divider, table */
+
+    /* =========================
+     ICON & DECORATION
+     ========================= */
+
+    --color-icon-default: 51 65 85;
+    /* Icon mặc định */
+
+    --color-icon-muted: 148 163 184;
+    /* Icon disabled / secondary */
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.button.drop-shadow {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.icon.drop-shadow {
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .button:hover {}
+}
+
+.button.active {
+    cursor: pointer;
+}
+
+.button.active:active {
+    scale: 90%;
+}
+
+/* === Hình viên thuốc === */
+.pill {
+    border-radius: 9999px;
+}
+
+.icon {
+    aspect-ratio: 1/1;
+    height: 100%;
+}
+
+.icon_default {
+    color: rgb(var(--color-icon-default));
+}

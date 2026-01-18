@@ -1,0 +1,41 @@
+.point-editor {
+    display: flex;
+
+    padding: 2px;
+
+    user-select: none;
+}
+
+.point-editor_body {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.point-editor_body>.button {
+    aspect-ratio: 1/1;
+    height: 60%;
+    color: black;
+    background-color: white;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.point-editor_icon-container {
+    height: 55%;
+}
+
+.point-editor_main-icon {
+    background-color: transparent;
+}
+
+.point-editor_gj {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.point-editor_number {
+    font-size: 27px;
+    font-weight: bolder;
+}

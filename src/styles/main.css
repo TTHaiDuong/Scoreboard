@@ -1,0 +1,516 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+
+.root>* {
+    color: white
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.req-fullscreen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    z-index: 1000;
+}
+
+.header,
+.footer {
+    background-color: #252728;
+    height: 50px;
+
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0px 30px;
+    align-items: center;
+}
+
+.body {
+    flex: 1;
+    min-height: 0;
+    background: linear-gradient(270deg,
+            #7D0000 0%,
+            #5E001C 35%,
+            #0E0067 65%,
+            #000074 100%);
+    display: grid;
+    grid-template-columns: 1.5fr 3.5fr 1.5fr 3fr 1.5fr 3.5fr 1.5fr;
+    /* grid-template-rows: 1fr 2fr 3fr; */
+    grid-template-rows: 0.5fr 3fr 3fr;
+    grid-template-areas:
+        " teamA athleteA athleteA . athleteB athleteB teamB"
+        " sideA pointA pointA middleT pointB pointB sideB"
+        "controlA controlA controlA middleB controlB controlB controlB"
+}
+
+.athlete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.athlete.blue {
+    grid-area: athleteA;
+}
+
+.athlete.red {
+    grid-area: athleteB;
+}
+
+.team.blue {
+    grid-area: teamA;
+}
+
+.team.red {
+    grid-area: teamB;
+}
+
+.side.blue {
+    grid-area: sideA;
+}
+
+.side.red {
+    grid-area: sideB;
+}
+
+.point {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    clip-path: inset(0);
+}
+
+.point.blue {
+    grid-area: pointA;
+    background: linear-gradient(180deg,
+            #00009E 0%,
+            #0001BE 100%);
+}
+
+.point.red {
+    grid-area: pointB;
+    background: linear-gradient(180deg,
+            #A30000 0%,
+            #C90000 100%);
+}
+
+.middle {
+    background-color: #252728;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+
+.middle.top {
+    grid-area: middleT;
+}
+
+.middle.bottom {
+    grid-area: middleB;
+}
+
+.middle.bottom>.clear {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    padding: 2px 10px;
+    border-radius: 10px;
+}
+
+.middle.bottom>.test {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+button {
+    all: unset;
+}
+
+.middle.bottom>.switch {
+    width: 42px;
+    height: 25px;
+    background-color: var(--black-a9);
+    border-radius: 9999px;
+    position: relative;
+    box-shadow: 0 2px 10px var(--black-a7);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    &:focus {
+        box-shadow: 0 0 0 2px black;
+    }
+
+    &[data-state="checked"] {
+        background-color: black;
+    }
+}
+
+.middle.bottom>.switch>.thumb {
+    display: block;
+    width: 21px;
+    height: 21px;
+    background-color: white;
+    border-radius: 9999px;
+    box-shadow: 0 2px 2px var(--black-a7);
+    transition: transform 100ms;
+    transform: translateX(2px);
+    will-change: transform;
+
+    &[data-state="checked"] {
+        transform: translateX(19px);
+    }
+}
+
+.middle.bottom>.round {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    justify-items: center;
+}
+
+.middle.bottom>.round>.title {
+    grid-column: 1/-1;
+}
+
+.round-control {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+}
+
+.round-control>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    background-color: #2a769c;
+    align-self: center;
+    justify-self: center;
+    border-radius: 10px;
+}
+
+.round-control>div:active {
+    scale: 90%;
+}
+
+/* Công bố thắng */
+.won-control {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+}
+
+.won-control>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+    border-radius: 10px;
+}
+
+.won-control>div:active {
+    scale: 90%;
+}
+
+.won-control.match>.blue {
+    background-color: blue;
+}
+
+.won-control.match>.red {
+    background-color: red;
+}
+
+.label-number {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Đồng hồ */
+.stopwatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    gap: 10px;
+}
+
+.stopwatch>.content {
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    padding: 10px 10px;
+    border-width: 4px;
+    border-color: gold;
+}
+
+.stopwatch>.mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+}
+
+.stopwatch>.content>input {
+    max-width: 60px;
+    max-height: 60px;
+    min-width: 40px;
+    min-width: 40px;
+    width: 100%;
+    aspect-ratio: 1/1;
+
+    display: flex;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 150%;
+    align-self: center;
+    justify-self: center;
+    background-color: #ffffff20;
+}
+
+.stopwatch>.content>.unit {
+    font-size: 20px;
+    align-self: center;
+    justify-self: center;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    /* Firefox */
+}
+
+.stopwatch>.settings {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.btn.reset {
+    background-color: #2a769c;
+    width: 40px;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: x-large;
+}
+
+.stopwatch>.btn.play {
+    background-color: cadetblue;
+    width: 90%;
+    height: 100vh;
+    max-height: 50px;
+    min-height: 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: medium;
+
+}
+
+.stopwatch>.settings>.icon {
+    width: 20px;
+    height: 20px;
+    color: white;
+}
+
+.stopwatch>.btn:active {
+    scale: 95%;
+}
+
+.gamjeom.blue {
+    grid-area: gamJeomA;
+}
+
+.gamjeom.red {
+    grid-area: gamJeomB;
+}
+
+.won.blue {
+    grid-area: wonA;
+}
+
+.won.red {
+    grid-area: wonB;
+}
+
+.score.label-number {
+    align-self: center;
+    height: 80%;
+}
+
+.back-btn {
+    width: 80px;
+    height: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: aqua;
+    border-radius: 20px;
+}
+
+.header>.title {
+    justify-self: center;
+}
+
+.control {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.control.blue {
+    grid-area: controlA;
+}
+
+.control.red {
+    grid-area: controlB;
+}
+
+.num-point {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px
+}
+
+.num-point.gamjeom {
+    font-weight: bold;
+    color: chartreuse;
+}
+
+.num-point>.label-number {
+    height: 50px;
+}
+
+.label-number>:first-child {}
+
+.label-number.round {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* Chỉnh sửa thời gian */
+.time-edit {
+    position: absolute;
+    width: 100%;
+    max-width: 400px;
+    max-height: 350px;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.time-edit>.top {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px 20px;
+}
+
+.time-edit>.top>div {
+    color: black;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.time-edit>.top>div:hover {
+    background-color: red;
+    color: white;
+}
+
+.time-edit>.content {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    gap: 20px
+}
+
+.content>.time {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100px;
+    height: 30px;
+    background-color: #2a769c;
+    color: white;
+    border-radius: 10px;
+}
+
+.content>.time>.icon {
+    width: 20px;
+    height: 20px;
+}

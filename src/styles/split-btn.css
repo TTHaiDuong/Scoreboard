@@ -1,0 +1,59 @@
+.split-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 5.5vw;
+    aspect-ratio: 1 / 1;
+    user-select: none;
+}
+
+.split-btn div {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.split-btn>div {
+    position: relative;
+    height: 49%;
+    background-color: white;
+    border-radius: 0.3rem;
+    overflow: hidden;
+}
+
+.split-btn>div:hover {
+    background-color: #aaaaaa;
+}
+
+.split-btn>div:active {
+    transform: scale(0.9);
+}
+
+.split-btn>div>.icon {
+    position: absolute;
+    height: 100%;
+    left: 50%;
+    -webkit-user-drag: none;
+}
+
+.split-btn>div:first-child>.icon {
+    transform: translate(-50%, -50%);
+}
+
+.split-btn>div:last-child>.icon {
+    transform: translate(-50%, 50%);
+}
+
+.split-btn>div>.icon>* {
+    height: 100%;
+    object-fit: contain;
+}
+
+.split-btn>div>div:not(.icon) {
+    height: 50%;
+}
+
+.split-btn>div>div:not(.icon):last-child {
+    position: absolute;
+    bottom: 0;
+}

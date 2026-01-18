@@ -1,0 +1,77 @@
+mkcert localhost 127.0.0.1 ::1 192.168.1.7
+
+
+import express from 'express'
+import cors from 'cors'
+import 'dotenv/config'
+import Style, { printLines } from './terminal-styles.js'
+import { getIP } from '../scripts/network.js'
+import { createServer } from 'http'
+import { Server } from 'socket.io'
+import withValidation from './validation.js'
+import z from 'zod'
+import handleVir from './services/vir.js'
+
+const PORT = process.env.EXPRESS_PORT || 3001
+const app = express()
+
+// == EXPRESS ==
+app.use(cors({ origin: '*' }))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+app.use("/", (req, res) =>
+    res.json({
+        message: "Path not found"
+    })
+)
+
+// == WEBSOCKET ==
+const httpServer = createServer(app)
+const io = new Server(httpServer, { cors: { origin: "*" } })
+
+import { roundDefault } from '../scripts/rule.js'
+import { handleCourt } from './services/court.js'
+
+io.on("connection", (socket) => {
+
+    socket.on("courtslist", withValidation(z.object({
+        method: z.enum(["get"])
+    }), (data, socket, ack) => {
+        ack?.({
+            data: [
+                { id: "1", courtAddress: "1", matchTitle: "Qualification Senior - Final Male - 58KG", isActive: false },
+                { id: "2", courtAddress: "1", matchTitle: "Qualification Senior - Final Male - 58KG", isActive: false },
+                { id: "3", courtAddress: "1", matchTitle: "Qualification Senior - Final Male - 58KG", isActive: false },
+                { id: "4", courtAddress: "1", matchTitle: "Qualification Senior - Final Male - 58KG", isActive: false },
+                { id: "5", courtAddress: "1", matchTitle: "Qualification Senior - Final Male - 58KG", isActive: false }
+            ]
+        })
+    }))
+
+    socket.on("create-court", withValidation(z.object({
+        pin: z.string()
+    }), (data, socket, ack) => {
+        ack?.apply({
+            message: "created"
+        })
+    }))
+
+    socket.on("control", withValidation(z.object({
+        round: z.union([z.literal(1), z.literal(2), z.literal(3)])
+    }), (data, socket, ack) => {
+        ack?.(roundDefault)
+    }))
+
+    handleCourt(io, socket)
+    handleVir(io, socket)
+})
+
+httpServer.listen(PORT, () => {
+    printLines([
+        Style.apply("   ▲ Express Server", ["blue", "bold"]),
+        `   - Local:        http://localhost:${PORT}`,
+        `   - Network:      http://${getIP()}:${PORT}`,
+        ""
+    ])
+})
