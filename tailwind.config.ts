@@ -11,6 +11,19 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        darkBg: "var(--color-bg-dark)",
+        surface: "var(--color-surface)",
+        overlay: "var(--color-overlay)"
+      },
+      fontSize: {
+        largeScore: "4rem",
+        caption: "0.8rem",
+      },
+      borderRadius: {
+        medium: "var(--border-radius-medium)"
+      },
+      opacity: {
+        medium: "0.5",
       },
     },
   },

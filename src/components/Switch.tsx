@@ -1,13 +1,38 @@
 import { useState, useRef, useLayoutEffect } from "react"
-import "@/styles/global.css"
-import "@/styles/switch.css"
+
+type SwitchState = {
+    track: string
+    thumb: string
+}
+
+export const SWITCH_COLORS = {
+    on: {
+        track: "#1976D2",
+        thumb: "#FFFFFF",
+    },
+    off: {
+        track: "#BDBDBD",
+        thumb: "#FFFFFF",
+    },
+    disabled: {
+        track: "#E0E0E0",
+        thumb: "#F5F5F5",
+    },
+}
 
 export default function Switch(props: {
+    className?: string
     value?: boolean
+    disable?: boolean
     onValueChanged?: (value: boolean) => void
+    variant?: {
+        on?: SwitchState
+        off?: SwitchState
+        disable?: SwitchState
+    }
 }) {
-    const [value, setValue] = useState<boolean>(props.value || false)
-    const ref = useRef<HTMLDivElement>(null)
+    const [checked, setValue] = useState<boolean>(props.value || false)
+    const ref = useRef<HTMLButtonElement>(null)
     const [offset, setOffset] = useState(0)
 
     function toggle() {
@@ -31,19 +56,32 @@ export default function Switch(props: {
         return () => observer.disconnect()
     }, [])
 
+    const theme = { ...SWITCH_COLORS, ...props.variant }
+    const color = props.disable
+        ? theme.disable
+        : checked
+            ? theme.on
+            : theme.off
+
     return (
-        <div
+        <button
             ref={ref}
-            className={`switch pill ${value ? "on" : ""}`}
+            disabled={props.disable}
+            className={"pill flex w-[35px] h-[20px] p-[3px] " + props.className}
+            style={{
+                backgroundColor: color?.track,
+                cursor: props.disable ? "not-allowed" : "pointer"
+            }}
             onClick={toggle}
         >
             <div
-                className="thumb button"
+                className="circle button transition-transform duration-300 ease-out drop-shadow"
                 style={{
-                    transform: `translateX(${value ? offset : 0}px)`
+                    backgroundColor: color?.thumb,
+                    transform: `translateX(${checked ? offset : 0}px)`
                 }}
             >
             </div>
-        </div>
+        </button>
     )
 }

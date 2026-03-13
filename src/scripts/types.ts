@@ -1,15 +1,15 @@
-export const side = ["blue", "red"] as const
+export const side = ["BLUE", "RED"] as const
 export type Side = typeof side[number]
 
 // === TYPE CHẤM ĐIỂM ===
-export const scoreTypes = [1, 2, 3, 4, 5, "gj"] as const
-export type ScoreType = typeof scoreTypes[number]
+export const pointTypes = [1, 2, 3, 4, 6, "gj"] as const
+export type PointType = typeof pointTypes[number]
 export type Score = {
-    [k in ScoreType]: number
+    [k in PointType]: number
 }
 export function getDefaultScore(): Score {
     const score = {} as Score
-    for (const t of scoreTypes) {
+    for (const t of pointTypes) {
         score[t] = 0
     }
     return score
@@ -17,19 +17,19 @@ export function getDefaultScore(): Score {
 
 export type UpdateScoreData = {
     side: Side
-    scoreType: ScoreType
+    scoreType: PointType
     value: number | "increase" | "decrease"
 }
 
 export type PressBuffer = {
-    presses: ScoreType[]
+    presses: PointType[]
     timeout: NodeJS.Timeout
 }
 
 export type PendingVote = {
     courtId: string
     side: Side
-    scoreType: ScoreType
+    scoreType: PointType
     voters: Set<string>
     timeout: NodeJS.Timeout
 }

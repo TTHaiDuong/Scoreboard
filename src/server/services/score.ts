@@ -4,8 +4,8 @@ import { getRound } from "./match.js"
 import {
     Side,
     Score,
-    scoreTypes,
-    ScoreType,
+    pointTypes,
+    PointType,
     PressBuffer,
     PendingVote,
     UpdateScoreData,
@@ -15,8 +15,8 @@ import {
 
 const pressBufferDb: Map<string, PressBuffer> = new Map()
 
-function mergeCombos(presses: ScoreType[]): ScoreType[] {
-    const result: ScoreType[] = []
+function mergeCombos(presses: PointType[]): PointType[] {
+    const result: PointType[] = []
     let i = 0
 
     while (i < presses.length) {
@@ -48,8 +48,8 @@ function mergeCombos(presses: ScoreType[]): ScoreType[] {
 
 function finalizePress(
     judgeId: string,
-    presses: ScoreType[]
-): ScoreType[] {
+    presses: PointType[]
+): PointType[] {
     pressBufferDb.delete(judgeId)
     return mergeCombos(presses)
 }
@@ -60,7 +60,7 @@ const pendingVoteDb: Map<string, PendingVote> = new Map()
 function createVoteKey(
     courtId: string,
     side: Side,
-    scoreType: ScoreType
+    scoreType: PointType
 ) {
     return `${courtId}|${side}|${scoreType}`
 }
@@ -221,7 +221,7 @@ export default function initScoreChannel(io: any, socket: any) {
         const user = socket.user
         if (!user || !user.courtId || user.role !== "judge") return
         if (!["blue", "red"].includes(data.side)) return
-        if (!scoreTypes.includes(data.scoreType) || data.scoreType === "gj") return
+        if (!pointTypes.includes(data.scoreType) || data.scoreType === "gj") return
 
         const round = getRound(user.courtId)
         if (!round) return

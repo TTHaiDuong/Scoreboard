@@ -16,8 +16,7 @@ import TimePicker from "@/components/TimePicker"
 import EditIcon from "@/assets/edit.svg"
 import FitText from "@/components/FitText"
 import { whoAdvantage } from "@/scripts/rule"
-import * as Switch from "@radix-ui/react-switch"
-import useIsMobile from "@/components/UseStates"
+import { useIsMobile } from "@/components/UseStates"
 
 export type Score = {
     1: number,
@@ -331,7 +330,7 @@ export default function Home() {
                     <div ref={durPickerRef}>
                         <TimePicker
                             title="Thời gian hiệp đấu"
-                            timeMs={durationMs}
+                            initTimeMs={durationMs}
                             onSubmit={(v) => {
                                 if (v) {
                                     setDurationMs(v)
@@ -348,7 +347,7 @@ export default function Home() {
                     <div ref={remainPickerRef}>
                         <TimePicker
                             title="Thời gian hiện tại"
-                            timeMs={remaining}
+                            initTimeMs={remaining}
                             onSubmit={(v) => {
                                 if (v) commitRemaining(v)
                                 setRemainingEditor(false)

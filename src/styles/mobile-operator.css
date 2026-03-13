@@ -1,0 +1,414 @@
+/* .operator {
+    position: relative;
+    container-type: size;
+    min-width: 320px;
+    iPhone SE
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    color: white;
+}
+
+.overlay {
+    position: absolute;
+    width: 60rem;
+    height: 30rem;
+    background-color: aquamarine;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+
+.header {
+    grid-area: header;
+    background-color: rgb(255, 255, 255, 0.2);
+    overflow: hidden;
+
+    font-size: 0.8rem;
+}
+
+.info {
+    grid-area: info;
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    padding: 0px 10px;
+
+    font-size: 0.8rem;
+    overflow: hidden;
+}
+
+.layout {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    gap: 10px 0px;
+    background:
+        linear-gradient(180deg,
+            #00000000 0%,
+            #00000050 20%,
+            #000000 100%),
+        linear-gradient(270deg,
+            #A30000 0%,
+            #57004A 48%,
+            #43005D 52%,
+            #00009F 100%);
+}
+
+
+@container (max-height: 20rem) {
+
+    .header,
+    .info {
+        display: none;
+        width: 0px;
+    }
+
+    .layout {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 3fr 2fr 10fr;
+        grid-template-areas:
+            "score score"
+            "control control"
+            "pointA pointB";
+    }
+}
+
+@container (min-height: 20rem) {
+    .layout {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 2fr 2fr 3fr 2fr 10fr;
+        grid-template-areas:
+            "header header"
+            "info info"
+            "score score"
+            "control control"
+            "pointA pointB";
+        padding-bottom: 10px;
+    }
+}
+
+.score {
+    grid-area: score;
+
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 3fr 2fr 3fr;
+    grid-template-rows: 1fr 5fr;
+
+}
+
+.won {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 0px 10px;
+    font-size: 0.8rem;
+}
+
+.circle {
+    aspect-ratio: 1/1;
+    height: 0.6rem;
+    background-color: #ffffff80;
+    border-radius: 50%;
+}
+
+.circle.set {
+    background-color: gold;
+}
+
+.won.red {
+    flex-direction: row-reverse;
+}
+
+.point {
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+    overflow: hidden;
+    font-size: 60px;
+}
+
+.point.blue {
+    background: linear-gradient(180deg,
+            #0800A3 0%,
+            #050069 100%);
+    border-radius: 0px 20px 20px 0px;
+}
+
+.point.red {
+    background: linear-gradient(180deg,
+            #9F0000 0%,
+            #740707 100%);
+    border-radius: 20px 0px 0px 20px;
+}
+
+.stopwatch {
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+}
+
+.clock {
+    border-color: gold;
+    border-width: 2px;
+    font-size: 2rem;
+
+}
+
+.label {
+    color: black;
+    background-color: gold;
+}
+
+.control {
+    grid-area: control;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.control>span {
+    font-size: 14px;
+}
+
+.point-editor-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.point-editor-container.blue {
+    grid-area: pointA;
+}
+
+.point-editor-container.red {
+    grid-area: pointB;
+}
+
+.external-point-editor {
+    width: clamp(30px, 80%, 200px);
+    height: clamp(30px, 40px, 50px);
+}
+
+.external-point-editor.blue {
+    background-color: rgb(0, 136, 255, 0.3);
+}
+
+.external-point-editor.red {
+    flex-direction: row-reverse;
+    background-color: rgb(255, 56, 59, 0.3);
+}
+
+.external-point-editor.gj {
+    background-color: rgb(255, 255, 255, 0.5)
+}
+
+.team-info {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    overflow: hidden;
+}
+
+.team-info_flag {
+    object-fit: contain;
+    width: 2rem;
+}
+
+.team-info_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0px;
+    flex: 1;
+    min-width: 0;
+}
+
+.team-info_team {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.timer-button {
+    height: clamp(30px, 100%, 90%);
+    border-radius: 20px;
+    align-self: center;
+    justify-self: center;
+}
+
+@container (min-width: 40rem) {
+    .layout {
+        grid-template-columns: 3fr 7fr 3fr;
+        grid-template-rows: 1fr 1fr 4fr 2fr;
+        grid-template-areas:
+            "header header header"
+            "pointA info pointB"
+            "pointA score pointB"
+            "pointA control pointB";
+        align-items: stretch;
+        justify-items: stretch;
+    }
+
+    .point-editor-container.blue {
+        padding-left: 10px;
+    }
+
+    .point-editor-container.red {
+        padding-right: 10px;
+    }
+
+    .point.blue {
+        border-radius: 20px;
+    }
+
+    .point.red {
+        border-radius: 20px;
+    }
+}
+
+@container (min-width: 30rem) and (min-height: 30rem) {
+    .layout {
+        grid-template-columns: 1fr 2fr 1fr 2fr 1fr;
+        grid-template-rows: 1fr 1fr 2fr 2fr 1fr;
+        grid-template-areas:
+            "header header header header header"
+            "teamA athleteA . athleteB teamB"
+            "sideA pointA middle pointB sideB"
+            "controlA controlA middle controlB controlB"
+            "footer footer footer footer footer";
+    }
+
+    .point-editor-container {
+        flex-direction: row;
+    }
+
+    .external-point-editor {
+        width: clamp(30px, 40px, 50px);
+        height: clamp(30px, 100px, 200px);
+        flex-direction: column;
+    }
+
+    .external-point-editor.red {
+        flex-direction: column;
+    }
+} */
+
+.mobile-operator {
+    --bg-blue-red:
+        linear-gradient(180deg,
+            #00000000 0%,
+            #00000050 20%,
+            #000000 100%),
+        linear-gradient(270deg,
+            #A30000 0%,
+            #57004A 48%,
+            #43005D 52%,
+            #00009F 100%);
+    --bg-blue-score: linear-gradient(180deg,
+            #0800A3 0%,
+            #050069 100%);
+    --bg-red-score: linear-gradient(180deg,
+            #9F0000 0%,
+            #740707 100%);
+
+    --ty-large-score: 2rem;
+    --ty-caption: 0.8rem;
+    --color-surface: #ffffff80;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+}
+
+.match-info {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    grid-template-rows: auto auto;
+
+    width: 100%;
+    font-size: 0.8rem;
+    row-gap: 10px;
+    padding: 10px;
+}
+
+.score-clock-container {
+    display: grid;
+    grid-template-columns: 1fr 100px 1fr;
+    grid-template-rows: auto auto auto;
+    row-gap: 10px;
+
+    width: 100%;
+}
+
+.won {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0px 10px;
+}
+
+.score {
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+}
+
+.score.blue {
+    background: var(--bg-blue-score);
+    border-radius: 0px var(--border-radius-medium) var(--border-radius-medium) 0px;
+}
+
+.score.red {
+    background: var(--bg-red-score);
+    border-radius: var(--border-radius-medium) 0px 0px var(--border-radius-medium);
+}
+
+.clock {
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+}
+
+.caption {
+    font-size: var(--ty-caption);
+}
+
+/* Chuyển sang global */
+.blue-red-container {
+    width: 100vw;
+    height: 100dvh;
+    background: var(--bg-blue-red);
+}
+
+.external-point-editor {
+    width: clamp(30px, 10rem, 200px);
+    height: clamp(30px, 40px, 50px);
+}
+
+.external-point-editor.blue {
+    background-color: rgb(0, 136, 255, 0.3);
+}
+
+.external-point-editor.red {
+    flex-direction: row-reverse;
+    background-color: rgb(255, 56, 59, 0.3);
+}
+
+.external-point-editor.gj {
+    background-color: rgb(255, 255, 255, 0.5);
+}

@@ -1,5 +1,5 @@
 import { handleJudgeScore, sendScoreToClient, updatedScore, } from "./score.js"
-import { scoreTypes, UpdateScoreData, getDefaultRound, Round } from "../../scripts/types.js"
+import { pointTypes, UpdateScoreData, getDefaultRound, Round } from "../../scripts/types.js"
 import { getRound } from "./match.js"
 
 const testModeDb: Map<string, Omit<Round, "win">> = new Map()
@@ -28,7 +28,7 @@ export default function initTestModeChannel(io: any, socket: any) {
         const user = socket.user
         if (!user || !user.courtId || user.role !== "judge") return
         if (!["blue", "red"].includes(data.side)) return
-        if (!scoreTypes.includes(data.scoreType) || data.scoreType === "gj") return
+        if (!pointTypes.includes(data.scoreType) || data.scoreType === "gj") return
 
         const round = testModeDb.get(user.courtId)
         if (!round) return
