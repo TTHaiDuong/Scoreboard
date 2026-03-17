@@ -307,7 +307,7 @@
     }
 } */
 
-.mobile-operator {
+/* .mobile-operator {
     --bg-blue-red:
         linear-gradient(180deg,
             #00000000 0%,
@@ -351,10 +351,12 @@
 .score-clock-container {
     display: grid;
     grid-template-columns: 1fr 100px 1fr;
-    grid-template-rows: auto auto auto;
-    row-gap: 10px;
+    grid-template-rows: auto 1fr auto;
+    row-gap: 8px;
 
     width: 100%;
+    flex: 1;
+    min-height: 0;
 }
 
 .won {
@@ -367,6 +369,16 @@
 .score {
     display: grid;
     grid-template-rows: 1fr 3fr 1fr;
+    max-height: 140px;
+    overflow: hidden;
+}
+
+.score-number {
+    font-size: clamp(2rem, 10vw, 5rem);
+    font-weight: 700;
+    line-height: 1;
+    place-self: center;
+    color: white;
 }
 
 .score.blue {
@@ -388,7 +400,6 @@
     font-size: var(--ty-caption);
 }
 
-/* Chuyển sang global */
 .blue-red-container {
     width: 100vw;
     height: 100dvh;
@@ -411,4 +422,4 @@
 
 .external-point-editor.gj {
     background-color: rgb(255, 255, 255, 0.5);
-}
+} */
